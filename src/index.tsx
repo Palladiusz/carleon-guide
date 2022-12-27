@@ -5,6 +5,8 @@ import store from "./store";
 
 import "./input.css";
 import App from "./components/App";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { LoginPage } from "./pages/Login";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -12,7 +14,12 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />}></Route>
+          <Route path="login" element={<LoginPage />}></Route>
+        </Routes>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );

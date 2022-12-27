@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   return (
@@ -12,7 +13,7 @@ export const Header = () => {
           <a className="mr-5 hover:text-gray-900">First Link</a>
           <a className="mr-5 hover:text-gray-900">Second Link</a>
           <a className="mr-5 hover:text-gray-900">Third Link</a>
-          <a className="mr-5 hover:text-gray-900">Fourth Link</a>
+          <Link to="/login">Login</Link>
         </nav>
       </div>
     </header>
