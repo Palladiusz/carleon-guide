@@ -7,6 +7,7 @@ import "./input.css";
 import App from "./components/App";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { LoginPage } from "./pages/Login";
+import { initializeApp } from "firebase/app";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);

@@ -1,9 +1,15 @@
 import { stringify } from "querystring";
 import { useState } from "react";
 import Button from "../components/Button";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 interface Credentials {
-  userName: string;
+  email: string;
   password: string;
   confirmPassword?: string;
 }
@@ -11,14 +17,46 @@ interface Credentials {
 export const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [credentials, setCredentials] = useState<Credentials>({
-    userName: "",
+    email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setCredentials({ ...credentials, [name]: value });
-    console.log(credentials);
+  }
+
+  function handleRegister() {
+    if (credentials.password === credentials.confirmPassword) {
+      createUserWithEmailAndPassword(
+        auth,
+        credentials.email,
+        credentials.password
+      )
+        .then((userCredential) => {
+          navigate("/");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          console.log(errorMessage);
+        });
+    }
+  }
+
+  function handleLogin() {
+    signInWithEmailAndPassword(auth, credentials.email, credentials.password)
+      .then((userCredential) => {
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
   }
 
   return (
@@ -34,9 +72,9 @@ export const LoginPage = () => {
         <div className="px-5">
           <span>Login</span>
           <input
-            type="text"
-            placeholder="Nazwa użytkownika"
-            name="userName"
+            type="email"
+            placeholder="E-mail"
+            name="email"
             onChange={handleInput}
             className="w-full bg-blue-700 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
@@ -66,7 +104,13 @@ export const LoginPage = () => {
 
         <div className="flex justify-end mr-4 mt-4">
           <Button
-            handleClick={() => {}}
+            handleClick={() => {
+              if (isLogin) {
+                handleLogin();
+              } else {
+                handleRegister();
+              }
+            }}
             text={isLogin ? "Login" : "Register"}
           />
         </div>
