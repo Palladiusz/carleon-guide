@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Item } from "../interfaces";
-import BuySellInput from "./Form/BuyInput";
-import EnchantInput from "./Form/EnchantInput";
 import ItemNameInput from "./Form/ItemNameInput";
 import TierInput from "./Form/TierInput";
 import { Styles } from "../tailwindStyles";
 import BuyInput from "./Form/BuyInput";
 import SellInput from "./Form/SellInput";
 import Button from "./Button";
+import EnchantInput from "./Form/EnchantInput";
 
 interface IFormProps {
   onSubmit: (item: Item) => void;
@@ -34,10 +33,6 @@ export const Form = (props: IFormProps) => {
       ...item,
       [name]: value,
     });
-  }
-
-  function handleEnchantChange(value: number) {
-    setItem({ ...item, enchant: value });
   }
 
   return (
@@ -71,7 +66,7 @@ export const Form = (props: IFormProps) => {
                 <TierInput />
               </td>
               <td className="px-4 py-3 relative top-1  flex justify-center">
-                <EnchantInput handleChange={handleEnchantChange} />
+                <EnchantInput />
               </td>
               <td className="px-4 py-3">
                 <Button
