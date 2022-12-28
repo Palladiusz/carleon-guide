@@ -1,17 +1,23 @@
 import React from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { changeTier } from "../../store";
 
-interface IFormProps {
-  handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-}
+function TierInput() {
+  const dispatch = useAppDispatch();
+  const form = useAppSelector((state) => state.form);
 
-function TierInput(props: IFormProps) {
+  function handleTierChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    dispatch(changeTier(parseInt(event.target.value)));
+  }
+
   return (
     <div>
       <div>
         <select
           name="tier"
-          onChange={props.handleChange}
+          onChange={handleTierChange}
           itemType="number"
+          value={form.tier}
           className="w-full bg-blue-700 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
         >
           <option value={1} className="bg-gray-800">

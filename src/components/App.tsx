@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { Item } from "../interfaces";
-import { addItem } from "../store";
+import { addItem, resetForm } from "../store";
 import { Form } from "./Form";
 import { Header } from "./Header";
 import { ItemsTable } from "./ItemsTable";
@@ -13,10 +13,14 @@ import {
   set,
 } from "firebase/database";
 import { auth, database } from "../utils/firebase";
+import { useSelector } from "react-redux";
+import { selectForm } from "../store/slices/formSlice";
 
 function App() {
   const userId = auth.currentUser?.uid;
   const dbRef = ref(getDatabase(), `${userId}`);
+  const form = useAppSelector((state) => state.form);
+
   function readItems() {
     onValue(dbRef, (snapshot) => {
       const data = snapshot.val().items;
@@ -61,14 +65,25 @@ function App() {
   }
 
   function handleSubmitItem(item: Item) {
-    dispatch(addItem({ ...item, id: `${Math.random()}` }));
-    console.log(item);
+    dispatch(
+      addItem({
+        name: form.name,
+        buy: form.buy,
+        sell: form.sell,
+        enchant: form.enchant,
+        id: "uytg76ty",
+        tier: form.tier,
+      })
+    );
+    console.log(form);
+
+    dispatch(resetForm());
 
     // writeItem(item);
     readItems();
   }
 
-  const items = useAppSelector((state) => state.items);
+  const items = useAppSelector((state) => state.items.items);
   const dispatch = useAppDispatch();
 
   return (
@@ -77,7 +92,7 @@ function App() {
 
       <Form onSubmit={handleSubmitItem} />
 
-      <ItemsTable items={items.items} />
+      <ItemsTable items={items} />
       <div>
         <h2 className="text-slate-200">Kot</h2>
         <img

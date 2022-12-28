@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import formSlice from "./slices/formSlice";
 import itemsSlice from "./slices/itemsSlice";
 
 const store = configureStore({
   reducer: {
     items: itemsSlice.reducer,
+    form: formSlice.reducer,
   },
 });
 
@@ -20,3 +22,12 @@ export const {
   removeItem,
   modifyItem,
 } = itemsSlice.actions;
+
+export const {
+  changeName,
+  changeBuy,
+  changeSell,
+  changeEnchant,
+  changeTier,
+  resetForm,
+} = formSlice.actions;

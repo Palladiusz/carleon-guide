@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Item } from "../interfaces";
-import BuySellInput from "./Form/BuySellInput";
+import BuySellInput from "./Form/BuyInput";
 import EnchantInput from "./Form/EnchantInput";
 import ItemNameInput from "./Form/ItemNameInput";
 import TierInput from "./Form/TierInput";
 import { Styles } from "../tailwindStyles";
+import BuyInput from "./Form/BuyInput";
+import SellInput from "./Form/SellInput";
 
 interface IFormProps {
   onSubmit: (item: Item) => void;
@@ -56,24 +58,16 @@ export const Form = (props: IFormProps) => {
           <tbody>
             <tr>
               <td className="px-4 py-3">
-                <ItemNameInput handleChange={handleChange} />
+                <ItemNameInput />
               </td>
               <td className="px-4 py-3">
-                <BuySellInput
-                  handleChange={handleChange}
-                  name="buy"
-                  placeholder="Cena kupna"
-                />
+                <BuyInput />
               </td>
               <td className="px-4 py-3">
-                <BuySellInput
-                  handleChange={handleChange}
-                  name="sell"
-                  placeholder="Cena sprzedaży"
-                />
+                <SellInput />
               </td>
               <td className="px-4 py-3">
-                <TierInput handleChange={handleChange} />
+                <TierInput />
               </td>
               <td className="px-4 py-3 relative top-1  flex justify-center">
                 <EnchantInput handleChange={handleEnchantChange} />
