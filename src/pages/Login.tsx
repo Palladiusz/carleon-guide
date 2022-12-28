@@ -1,12 +1,11 @@
-import { stringify } from "querystring";
 import { useState } from "react";
 import Button from "../components/Button";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../utils/firebase";
 
 interface Credentials {
   email: string;
