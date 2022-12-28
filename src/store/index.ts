@@ -14,4 +14,9 @@ export type AppDispatch = typeof store.dispatch;
 
 export default store;
 
-export const { addItem, decrement, modifyItem } = itemsSlice.actions;
+export const {
+  changeSearchTerm,
+  addItem,
+  removeItem,
+  modifyItem,
+} = itemsSlice.actions;

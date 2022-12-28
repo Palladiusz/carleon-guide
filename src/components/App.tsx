@@ -77,7 +77,7 @@ function App() {
 
       <Form onSubmit={handleSubmitItem} />
 
-      <ItemsTable items={items} />
+      <ItemsTable items={items.items} />
       <div>
         <h2 className="text-slate-200">Kot</h2>
         <img
