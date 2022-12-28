@@ -21,6 +21,7 @@ export const {
   addItem,
   removeItem,
   modifyItem,
+  setItems,
 } = itemsSlice.actions;
 
 export const {

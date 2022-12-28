@@ -16,5 +16,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "src/utils/firebase.ts"]
+  "include": ["src", "src/utils/firebase.js"]
 }

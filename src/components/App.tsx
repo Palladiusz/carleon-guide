@@ -1,90 +1,52 @@
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { Item } from "../interfaces";
-import { addItem, resetForm } from "../store";
+import { Przedmiot } from "../interfaces";
+import { addItem, resetForm, setItems } from "../store";
 import { Form } from "./Form";
 import { Header } from "./Header";
 import { ItemsTable } from "./ItemsTable";
-import {
-  getDatabase,
-  onValue,
-  push,
-  ref,
-  remove,
-  set,
-} from "firebase/database";
-import { auth, database } from "../utils/firebase";
-import { useSelector } from "react-redux";
-import { selectForm } from "../store/slices/formSlice";
+import { fetchItems, writeItem } from "../api";
+import { useEffect } from "react";
 
 function App() {
-  const userId = auth.currentUser?.uid;
-  const dbRef = ref(getDatabase(), `${userId}`);
   const form = useAppSelector((state) => state.form);
-
-  function readItems() {
-    onValue(dbRef, (snapshot) => {
-      const data = snapshot.val().items;
-      const values = Object.keys(data).map((key) => data[key]);
-      console.log(values);
-    });
-  }
-
-  function writeItem(item: Item) {
-    const userId = auth.currentUser?.uid;
-
-    if (userId != null) {
-      const postListRef = ref(database, userId + "/items");
-      const newPostRef = push(postListRef, item);
-      set(newPostRef, {
-        ...item,
-        id: newPostRef.key,
-      });
-    }
-  }
-
-  function editItem(item: Item) {
-    const userId = auth.currentUser?.uid;
-
-    if (userId != null) {
-      const postListRef = ref(database, userId + "/items" + `/${item.id}`);
-
-      set(postListRef, {
-        ...item,
-      });
-    }
-  }
-
-  function deleteItem(item: Item) {
-    const userId = auth.currentUser?.uid;
-
-    if (userId != null) {
-      const postListRef = ref(database, userId + "/items" + `/${item.id}`);
-
-      remove(postListRef);
-    }
-  }
-
-  function handleSubmitItem(item: Item) {
-    dispatch(
-      addItem({
-        name: form.name,
-        buy: form.buy,
-        sell: form.sell,
-        enchant: form.enchant,
-        id: "uytg76ty",
-        tier: form.tier,
-      })
-    );
-    console.log(form);
-
-    dispatch(resetForm());
-
-    // writeItem(item);
-    readItems();
-  }
-
+  const fetchedData = fetchItems();
   const items = useAppSelector((state) => state.items.items);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const data = fetchItems();
+    dispatch(setItems(data));
+
+    setTimeout(function () {
+      console.log(data);
+    }, 5000);
+
+    console.log(data);
+  }, []);
+
+  function handleSubmitItem(item: Przedmiot) {
+    // const savedItem = writeItem({
+    //   name: form.name,
+    //   buy: form.buy,
+    //   sell: form.sell,
+    //   enchant: form.enchant,
+    //   id: "uytg76ty",
+    //   tier: form.tier,
+    // });
+    // if (savedItem != null)
+    //   dispatch(
+    //     addItem({
+    //       name: savedItem?.name,
+    //       buy: savedItem.buy,
+    //       sell: savedItem.sell,
+    //       enchant: savedItem.enchant,
+    //       id: savedItem.id,
+    //       tier: savedItem.tier,
+    //     })
+    //   );
+    const data = fetchItems();
+    dispatch(setItems(data));
+  }
 
   return (
     <div className="bg-gray-700 h-screen">

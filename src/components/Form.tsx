@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Item } from "../interfaces";
+import { Przedmiot } from "../interfaces";
 import ItemNameInput from "./Form/ItemNameInput";
 import TierInput from "./Form/TierInput";
 import { Styles } from "../tailwindStyles";
@@ -9,11 +9,11 @@ import Button from "./Button";
 import EnchantInput from "./Form/EnchantInput";
 
 interface IFormProps {
-  onSubmit: (item: Item) => void;
+  onSubmit: (item: Przedmiot) => void;
 }
 
 export const Form = (props: IFormProps) => {
-  const [item, setItem] = useState<Item>({
+  const [item, setItem] = useState<Przedmiot>({
     id: "uyg76",
     name: "",
     buy: 0,

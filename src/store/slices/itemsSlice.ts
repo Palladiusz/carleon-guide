@@ -1,15 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "..";
-import { Item } from "../../interfaces";
+import { Przedmiot } from "../../interfaces";
 
 export const itemsSlice = createSlice({
   name: "items",
-  initialState: { items: <Item[]>[], searchTerm: "" },
+  initialState: { items: <Przedmiot[]>[], searchTerm: "" },
   reducers: {
     changeSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
     },
-    addItem: (state, action: PayloadAction<Item>) => {
+    setItems: (state, action: PayloadAction<Przedmiot[]>) => {
+      state.items = action.payload;
+    },
+    addItem: (state, action: PayloadAction<Przedmiot>) => {
       state.items.push(action.payload);
     },
     removeItem: (state, action: PayloadAction<string>) => {
@@ -19,7 +22,7 @@ export const itemsSlice = createSlice({
       state.items = updated;
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
-    modifyItem: (state, action: PayloadAction<Item>) => {
+    modifyItem: (state, action: PayloadAction<Przedmiot>) => {
       state.items.map((e) => {
         if (e.id == action.payload.id) {
           const newItem = action.payload;
@@ -38,6 +41,7 @@ export const {
   addItem,
   removeItem,
   modifyItem,
+  setItems,
 } = itemsSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

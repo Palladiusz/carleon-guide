@@ -1,4 +1,4 @@
-export interface Item {
+export interface Przedmiot {
   id: string;
   name: string;
   buy: number;

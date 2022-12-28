@@ -1,11 +1,15 @@
 import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { fetchItems } from "../api";
+import { useAppDispatch } from "../hooks";
+import { setItems } from "../store";
 
 export const Header = () => {
   const auth = getAuth();
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   return (
     <header className="text-gray-200 body-font bg-orange-500 shadow-lg">
@@ -17,7 +21,15 @@ export const Header = () => {
         <nav className="flex flex-wrap items-center text-base justify-center">
           <a className="mr-5 hover:text-gray-900">First Link</a>
           <a className="mr-5 hover:text-gray-900">Second Link</a>
-          <a className="mr-5 hover:text-gray-900">Third Link</a>
+          <a
+            className="mr-5 hover:text-gray-900 bg-orange-700 p-1 rounded-md hover:bg-orange-200 hover:cursor-pointer"
+            onClick={() => {
+              const data = fetchItems();
+              dispatch(setItems(data));
+            }}
+          >
+            Pobierz dane
+          </a>
           <a
             className="mr-5 hover:text-gray-900 hover:cursor-pointer"
             onClick={() => {
@@ -34,7 +46,7 @@ export const Header = () => {
               }
             }}
           >
-            {auth.currentUser != null ? "Logout" : "Login"}
+            {auth.currentUser != null ? "Wyloguj" : "Zaloguj"}
           </a>
         </nav>
       </div>
