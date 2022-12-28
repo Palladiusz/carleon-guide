@@ -7,6 +7,7 @@ import TierInput from "./Form/TierInput";
 import { Styles } from "../tailwindStyles";
 import BuyInput from "./Form/BuyInput";
 import SellInput from "./Form/SellInput";
+import Button from "./Button";
 
 interface IFormProps {
   onSubmit: (item: Item) => void;
@@ -73,13 +74,19 @@ export const Form = (props: IFormProps) => {
                 <EnchantInput handleChange={handleEnchantChange} />
               </td>
               <td className="px-4 py-3">
-                <button
+                <Button
+                  text="Submit"
+                  handleClick={() => {
+                    props.onSubmit(item);
+                  }}
+                ></Button>
+                {/* <button
                   onClick={() => {
                     props.onSubmit(item);
                   }}
                 >
                   Submit
-                </button>
+                </button> */}
               </td>
             </tr>
           </tbody>

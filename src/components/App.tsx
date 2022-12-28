@@ -87,7 +87,7 @@ function App() {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="bg-blue-400 h-screen">
+    <div className="bg-gray-700 h-screen">
       <Header />
 
       <Form onSubmit={handleSubmitItem} />

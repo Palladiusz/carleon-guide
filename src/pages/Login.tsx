@@ -59,13 +59,13 @@ export const LoginPage = () => {
   }
 
   return (
-    <div className="bg-blue-900 flex flex-col h-screen items-center justify-center">
+    <div className="bg-gray-700 text-white flex flex-col h-screen items-center justify-center">
       <div
         className={`relative bottom-10 border rounded-lg w-96 h-${
           isLogin ? "3" : "4"
-        }/6 p-6 shadow-xl bg-blue-500 static`}
+        }/6 p-6 shadow-xl bg-orange-500 static`}
       >
-        <h1 className="text-center px-5 mb-5 font-semibold tracking-wider text-lg">
+        <h1 className="text-center  px-5 mb-5 font-semibold tracking-wider text-lg">
           {isLogin ? "Login" : "Register"}
         </h1>
         <div className="px-5">
