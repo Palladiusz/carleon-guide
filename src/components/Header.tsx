@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { fetchItems } from "../api";
 import { useAppDispatch } from "../hooks";
 import { setItems } from "../store";
+import { Search } from "./Search";
 
 export const Header = () => {
   const auth = getAuth();
@@ -18,6 +19,7 @@ export const Header = () => {
           <span className="ml-3 text-xl text-gray-200">Carleon guide</span>
           <span className="ml-3 text-xs text-gray-200">Worth or not?</span>
         </a>
+        <Search />
         <nav className="flex flex-wrap items-center text-base justify-center">
           <a className="mr-5 hover:text-gray-900">First Link</a>
           <a className="mr-5 hover:text-gray-900">Second Link</a>

@@ -13,7 +13,7 @@ import { FaPlus, FaShoppingCart } from "react-icons/fa";
 function App() {
   const form = useAppSelector((state) => state.form);
   const fetchedData = fetchItems();
-  const items = useAppSelector((state) => state.items);
+  const itemsSlice = useAppSelector((state) => state.items);
   const dispatch = useAppDispatch();
   const [showForm, setShowForm] = useState(true);
 
@@ -56,9 +56,9 @@ function App() {
     // }
     // const data = fetchItems();
     // dispatch(setItems(data));
-    console.log(items.outcome);
-    console.log(items.income);
-    console.log(items.percentageProfit);
+    console.log(itemsSlice.outcome);
+    console.log(itemsSlice.income);
+    console.log(itemsSlice.percentageProfit);
   }
 
   return (
@@ -83,7 +83,7 @@ function App() {
         </div>
       </div>
 
-      <ItemsTable items={items.items} />
+      <ItemsTable items={itemsSlice.items} />
       <div>
         <h2 className="text-slate-200">Kot</h2>
         <img

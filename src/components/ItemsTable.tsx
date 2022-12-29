@@ -1,3 +1,4 @@
+import { useAppSelector } from "../hooks";
 import { Przedmiot } from "../interfaces";
 import { Styles } from "../tailwindStyles";
 import TableElement from "./TableElement";
@@ -7,7 +8,12 @@ interface IItemsTableProps {
 }
 
 export function ItemsTable(itemsProps: IItemsTableProps): JSX.Element {
-  const formattedItems = itemsProps.items.map((item, index) => {
+  const itemsSlice = useAppSelector((state) => state.items);
+  const filteredItems = itemsProps.items.filter((item) =>
+    item.name.toLowerCase().includes(itemsSlice.searchTerm.toLowerCase())
+  );
+
+  const formattedItems = filteredItems.map((item, index) => {
     return <TableElement item={item} />;
   });
 
