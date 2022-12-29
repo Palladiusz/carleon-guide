@@ -3,7 +3,11 @@ import { FaCheck, FaEdit, FaTrashAlt } from "react-icons/fa";
 import getImgUrl, { editItem } from "../api";
 import { useAppDispatch } from "../hooks";
 import { Przedmiot } from "../interfaces";
-import { calculateProfitInPercentages, getFractionColor } from "../logic";
+import {
+  calculateProfitInPercentages,
+  getFractionColor,
+  numberWithSpaces,
+} from "../logic";
 import { modifyItem } from "../store";
 import SmallButton from "./SmallButton";
 
@@ -87,7 +91,7 @@ function TableElement(props: ITableElementsProps) {
             className="w-full bg-orange-700 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
         ) : (
-          buy
+          numberWithSpaces(buy)
         )}
       </td>
       <td className="w-24 h-20  text-center">
@@ -103,10 +107,10 @@ function TableElement(props: ITableElementsProps) {
             className="w-full bg-orange-700 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
         ) : (
-          sell
+          numberWithSpaces(sell)
         )}
       </td>
-      <td className="w-24 h-20  text-center">{sell - buy}</td>
+      <td className="w-24 h-20  text-center">{numberWithSpaces(sell - buy)}</td>
       <td className="w-24 h-20  text-center">
         {calculateProfitInPercentages(buy, sell)}
       </td>

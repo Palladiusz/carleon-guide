@@ -52,7 +52,7 @@ export const Form = (props: IFormProps) => {
               <th className={Styles.table.tableHeader}>Tier</th>
               <th className={Styles.table.tableHeader}>Zaklinanie</th>
               <th className={Styles.table.tableHeader}>Frakcja</th>
-              <th className={Styles.table.TableHeaderEnd}>Dodaj</th>
+              <th className={Styles.table.tableHeaderEnd}>Dodaj</th>
             </tr>
           </thead>
           <tbody>

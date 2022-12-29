@@ -59,7 +59,7 @@ export const LoginPage = () => {
   }
 
   return (
-    <div className="bg-gray-700 text-white flex flex-col h-screen items-center justify-center">
+    <div className="bg-gray-700 text-white flex flex-col bg-cover items-center justify-center">
       <div
         className={`relative bottom-10 border rounded-lg w-96 h-${
           isLogin ? "3" : "4"

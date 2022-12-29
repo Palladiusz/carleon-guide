@@ -20,7 +20,6 @@ export const itemsSlice = createSlice({
       state.items = action.payload;
 
       if (state.items.length > 0) {
-        console.log(typeof action.payload[0].buy);
         const {
           totalIncome,
           totalOutcome,
@@ -55,6 +54,16 @@ export const itemsSlice = createSlice({
         }
       });
       state.items = updatedItems;
+
+      const {
+        totalIncome,
+        totalOutcome,
+        percentageTotalValue,
+      } = initialCalculations(updatedItems);
+
+      state.income = totalIncome;
+      state.outcome = totalOutcome;
+      state.percentageProfit = percentageTotalValue;
     },
   },
 });

@@ -70,3 +70,7 @@ export function getFractionColor(fraction: Fraction) {
       return "bg-purple-600";
   }
 }
+
+export function numberWithSpaces(x: number) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}

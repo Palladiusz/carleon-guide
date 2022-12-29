@@ -5,13 +5,17 @@ import { Form } from "./Form";
 import { Header } from "./Header";
 import { ItemsTable } from "./ItemsTable";
 import { fetchItems, writeItem } from "../api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Cart } from "./Cart";
+import SmallButton from "./SmallButton";
+import { FaPlus, FaShoppingCart } from "react-icons/fa";
 
 function App() {
   const form = useAppSelector((state) => state.form);
   const fetchedData = fetchItems();
   const items = useAppSelector((state) => state.items);
   const dispatch = useAppDispatch();
+  const [showForm, setShowForm] = useState(true);
 
   useEffect(() => {
     const data = fetchItems();
@@ -58,10 +62,26 @@ function App() {
   }
 
   return (
-    <div className="bg-gray-700 h-screen">
+    <div className="bg-gray-700 bg-cover">
       <Header />
 
-      <Form onSubmit={handleSubmitItem} />
+      <div className="relative">
+        {showForm ? <Form onSubmit={handleSubmitItem} /> : <Cart />}{" "}
+        <div className="absolute inset-y-0 right-0">
+          <SmallButton
+            handleClick={() => {
+              setShowForm(true);
+            }}
+            children={<FaPlus />}
+          />
+          <SmallButton
+            handleClick={() => {
+              setShowForm(false);
+            }}
+            children={<FaShoppingCart />}
+          />
+        </div>
+      </div>
 
       <ItemsTable items={items.items} />
       <div>
