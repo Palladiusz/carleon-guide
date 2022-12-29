@@ -1,6 +1,11 @@
-import getImgUrl from "../api";
+import { useState } from "react";
+import { FaCheck, FaEdit, FaTrashAlt } from "react-icons/fa";
+import getImgUrl, { editItem } from "../api";
+import { useAppDispatch } from "../hooks";
 import { Przedmiot } from "../interfaces";
 import { calculateProfitInPercentages } from "../logic";
+import { modifyItem } from "../store";
+import SmallButton from "./SmallButton";
 
 interface ITableElementsProps {
   item: Przedmiot;
@@ -8,10 +13,20 @@ interface ITableElementsProps {
 
 function TableElement(props: ITableElementsProps) {
   const { name, buy, sell, tier, enchant, id } = props.item;
+  const [isEdit, setIsEdit] = useState(false);
+  const [editValues, setEditValues] = useState({ name, buy, sell });
+  const dispatch = useAppDispatch();
+
+  function handleEditSubmit() {
+    const modifiedItem = { ...props.item, ...editValues };
+    dispatch(modifyItem(modifiedItem));
+    editItem(modifiedItem);
+  }
+
   return (
     <tr
       key={id}
-      className="border border-gray-500 border-spacing-1 bg-purple-700"
+      className="border border-gray-500 border-spacing-1 bg-purple-700 text-white"
     >
       <th className="w-24 h-20">{id}</th>
       <td className="w-24">
@@ -21,15 +36,80 @@ function TableElement(props: ITableElementsProps) {
           className="w-24"
         />
       </td>
-      <td className="w-24 h-20 text-center">{name}</td>
-      <td className="w-24 h-20  text-center">{buy}</td>
-      <td className="w-24 h-20  text-center">{sell}</td>
+      <td className="w-24 h-20 text-center">
+        {isEdit ? (
+          <input
+            type="text"
+            placeholder="Nazwa przedmiotu"
+            name="name"
+            value={editValues.name}
+            onChange={(e) => {
+              setEditValues({ ...editValues, name: e.target.value });
+            }}
+            className="w-full bg-orange-700 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+          />
+        ) : (
+          name
+        )}
+      </td>
+      <td className="w-24 h-20  text-center">
+        {isEdit ? (
+          <input
+            type="number"
+            placeholder="Cena kupna"
+            name="buy"
+            value={editValues.buy}
+            onChange={(e) => {
+              setEditValues({ ...editValues, buy: parseInt(e.target.value) });
+            }}
+            className="w-full bg-orange-700 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+          />
+        ) : (
+          buy
+        )}
+      </td>
+      <td className="w-24 h-20  text-center">
+        {isEdit ? (
+          <input
+            type="number"
+            placeholder="Cena kupna"
+            name="sell"
+            value={editValues.sell}
+            onChange={(e) => {
+              setEditValues({ ...editValues, sell: parseInt(e.target.value) });
+            }}
+            className="w-full bg-orange-700 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+          />
+        ) : (
+          sell
+        )}
+      </td>
       <td className="w-24 h-20  text-center">{sell - buy}</td>
       <td className="w-24 h-20  text-center">
         {calculateProfitInPercentages(buy, sell)}
       </td>
       <td className="w-24 h-20  text-center">{tier}</td>
       <td className="w-24 h-20  text-center">{enchant}</td>
+      <td className="w-24 h-20  text-center flex items-center justify-center mt-3">
+        {isEdit ? (
+          <SmallButton
+            children={<FaCheck />}
+            handleClick={() => {
+              handleEditSubmit();
+              setIsEdit(false);
+            }}
+          />
+        ) : (
+          <SmallButton
+            children={<FaEdit />}
+            handleClick={() => {
+              setIsEdit(true);
+            }}
+          />
+        )}
+
+        <SmallButton children={<FaTrashAlt />} handleClick={() => {}} />
+      </td>
     </tr>
   );
 }

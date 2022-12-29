@@ -28,6 +28,7 @@ export function ItemsTable(itemsProps: IItemsTableProps): JSX.Element {
               <th className={Styles.table.tableHeader}>Zysk w %</th>
               <th className={Styles.table.tableHeader}>Tier</th>
               <th className={Styles.table.TableHeaderEnd}>Zaklinanie</th>
+              <th className={Styles.table.TableHeaderEnd}>Opcje</th>
             </tr>
           </thead>
           <tfoot>
@@ -41,6 +42,7 @@ export function ItemsTable(itemsProps: IItemsTableProps): JSX.Element {
               <th className={Styles.table.tableHeader}>Zysk w %</th>
               <th className={Styles.table.tableHeader}>Tier</th>
               <th className={Styles.table.TableHeaderEnd}>Zaklinanie</th>
+              <th className={Styles.table.TableHeaderEnd}>Opcje</th>
             </tr>
           </tfoot>
           <tbody> {formattedItems} </tbody>

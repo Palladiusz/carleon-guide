@@ -23,15 +23,18 @@ export const itemsSlice = createSlice({
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
     modifyItem: (state, action: PayloadAction<Przedmiot>) => {
-      state.items.map((e) => {
+      const updatedItems = state.items.map((e) => {
         if (e.id == action.payload.id) {
           const newItem = action.payload;
+
+          console.log({ ...e, ...newItem });
 
           return { ...e, ...newItem };
         } else {
           return e;
         }
       });
+      state.items = updatedItems;
     },
   },
 });
