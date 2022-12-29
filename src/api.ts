@@ -71,11 +71,11 @@ function editItem(item: Przedmiot) {
   }
 }
 
-function deleteItem(item: Przedmiot) {
+function deleteItem(itemId: string) {
   const userId = auth.currentUser?.uid;
 
   if (userId != null) {
-    const postListRef = ref(database, userId + "/items" + `/${item.id}`);
+    const postListRef = ref(database, userId + "/items" + `/${itemId}`);
 
     remove(postListRef);
   }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaCheck, FaEdit, FaTrashAlt } from "react-icons/fa";
-import getImgUrl, { editItem } from "../api";
+import getImgUrl, { deleteItem, editItem } from "../api";
 import { useAppDispatch } from "../hooks";
 import { Przedmiot } from "../interfaces";
 import {
@@ -8,7 +8,7 @@ import {
   getFractionColor,
   numberWithSpaces,
 } from "../logic";
-import { modifyItem } from "../store";
+import { modifyItem, removeItem } from "../store";
 import SmallButton from "./SmallButton";
 
 interface ITableElementsProps {
@@ -134,7 +134,13 @@ function TableElement(props: ITableElementsProps) {
           />
         )}
 
-        <SmallButton children={<FaTrashAlt />} handleClick={() => {}} />
+        <SmallButton
+          children={<FaTrashAlt />}
+          handleClick={() => {
+            deleteItem(id);
+            dispatch(removeItem(id));
+          }}
+        />
       </td>
     </tr>
   );
