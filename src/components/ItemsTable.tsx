@@ -1,6 +1,4 @@
-import getImgUrl from "../api";
 import { Przedmiot } from "../interfaces";
-import { calculateProfitInPercentages } from "../logic";
 import { Styles } from "../tailwindStyles";
 import TableElement from "./TableElement";
 
@@ -19,7 +17,7 @@ export function ItemsTable(itemsProps: IItemsTableProps): JSX.Element {
         <table className="table-fixed">
           <thead>
             <tr>
-              <th className={Styles.table.tableHeaderStart}>Num</th>
+              <th className={Styles.table.tableHeaderStart}>Ilość</th>
               <th className={Styles.table.tableHeader}>Obraz</th>
               <th className={Styles.table.tableHeader}>Nazwa przedmiotu</th>
               <th className={Styles.table.tableHeader}>Cena kupna</th>
@@ -33,7 +31,7 @@ export function ItemsTable(itemsProps: IItemsTableProps): JSX.Element {
           </thead>
           <tfoot>
             <tr>
-              <th className={Styles.table.tableHeaderStart}>Num</th>
+              <th className={Styles.table.tableHeaderStart}>Ilość</th>
               <th className={Styles.table.tableHeader}>Obraz</th>
               <th className={Styles.table.tableHeader}>Nazwa przedmiotu</th>
               <th className={Styles.table.tableHeader}>Cena kupna</th>

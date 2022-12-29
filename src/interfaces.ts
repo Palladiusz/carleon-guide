@@ -5,6 +5,8 @@ export interface Przedmiot {
   sell: number;
   tier: number;
   enchant: number;
+  quantity: number;
+  fraction: Fraction;
 }
 
 export interface FormInterface {
@@ -13,4 +15,13 @@ export interface FormInterface {
   sell: number;
   tier: number;
   enchant: number;
+  fraction: string;
+}
+
+export enum Fraction {
+  TF = "Thetford",
+  BW = "Bridgewatch",
+  FS = "Fort Sterling",
+  ML = "Martlock",
+  LYM = "Lymhurst",
 }

@@ -30,5 +30,6 @@ export const {
   changeSell,
   changeEnchant,
   changeTier,
+  changeFraction,
   resetForm,
 } = formSlice.actions;

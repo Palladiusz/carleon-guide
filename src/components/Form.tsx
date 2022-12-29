@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Przedmiot } from "../interfaces";
+import { Fraction, Przedmiot } from "../interfaces";
 import ItemNameInput from "./Form/ItemNameInput";
 import TierInput from "./Form/TierInput";
 import { Styles } from "../tailwindStyles";
@@ -7,6 +7,7 @@ import BuyInput from "./Form/BuyInput";
 import SellInput from "./Form/SellInput";
 import Button from "./Button";
 import EnchantInput from "./Form/EnchantInput";
+import FractionInput from "./Form/FractionInput";
 
 interface IFormProps {
   onSubmit: (item: Przedmiot) => void;
@@ -20,6 +21,8 @@ export const Form = (props: IFormProps) => {
     sell: 0,
     tier: 1,
     enchant: 4,
+    quantity: 0,
+    fraction: Fraction.TF,
   });
 
   function handleChange(
@@ -48,6 +51,7 @@ export const Form = (props: IFormProps) => {
               <th className={Styles.table.tableHeader}>Cena sprzedaży</th>
               <th className={Styles.table.tableHeader}>Tier</th>
               <th className={Styles.table.tableHeader}>Zaklinanie</th>
+              <th className={Styles.table.tableHeader}>Frakcja</th>
               <th className={Styles.table.TableHeaderEnd}>Dodaj</th>
             </tr>
           </thead>
@@ -69,19 +73,16 @@ export const Form = (props: IFormProps) => {
                 <EnchantInput />
               </td>
               <td className="px-4 py-3">
+                <FractionInput />
+              </td>
+
+              <td className="px-4 py-3">
                 <Button
                   text="Submit"
                   handleClick={() => {
                     props.onSubmit(item);
                   }}
                 ></Button>
-                {/* <button
-                  onClick={() => {
-                    props.onSubmit(item);
-                  }}
-                >
-                  Submit
-                </button> */}
               </td>
             </tr>
           </tbody>

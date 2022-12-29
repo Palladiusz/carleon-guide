@@ -1,16 +1,36 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "..";
 import { Przedmiot } from "../../interfaces";
+import { calculateTotalProfit, initialCalculations } from "../../logic";
 
 export const itemsSlice = createSlice({
   name: "items",
-  initialState: { items: <Przedmiot[]>[], searchTerm: "" },
+  initialState: {
+    items: <Przedmiot[]>[],
+    searchTerm: "",
+    outcome: 0,
+    income: 0,
+    percentageProfit: "",
+  },
   reducers: {
     changeSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
     },
     setItems: (state, action: PayloadAction<Przedmiot[]>) => {
       state.items = action.payload;
+
+      if (state.items.length > 0) {
+        console.log(typeof action.payload[0].buy);
+        const {
+          totalIncome,
+          totalOutcome,
+          percentageTotalValue,
+        } = initialCalculations(state.items);
+
+        state.income = totalIncome;
+        state.outcome = totalOutcome;
+        state.percentageProfit = percentageTotalValue;
+      }
     },
     addItem: (state, action: PayloadAction<Przedmiot>) => {
       state.items.push(action.payload);

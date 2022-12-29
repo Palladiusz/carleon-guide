@@ -34,6 +34,8 @@ const fetchItems = () => {
       const data = snapshot.val().items;
       const values = Object.keys(data).map((key) => data[key]);
       items = values.map((element: Przedmiot) => element);
+      console.log(typeof items[0].buy);
+      console.log(typeof items[0].sell);
     } else {
       console.log("snapshot nie trybi");
     }

@@ -3,7 +3,7 @@ import { FaCheck, FaEdit, FaTrashAlt } from "react-icons/fa";
 import getImgUrl, { editItem } from "../api";
 import { useAppDispatch } from "../hooks";
 import { Przedmiot } from "../interfaces";
-import { calculateProfitInPercentages } from "../logic";
+import { calculateProfitInPercentages, getFractionColor } from "../logic";
 import { modifyItem } from "../store";
 import SmallButton from "./SmallButton";
 
@@ -12,9 +12,9 @@ interface ITableElementsProps {
 }
 
 function TableElement(props: ITableElementsProps) {
-  const { name, buy, sell, tier, enchant, id } = props.item;
+  const { name, buy, sell, tier, enchant, id, fraction, quantity } = props.item;
   const [isEdit, setIsEdit] = useState(false);
-  const [editValues, setEditValues] = useState({ name, buy, sell });
+  const [editValues, setEditValues] = useState({ name, buy, sell, quantity });
   const dispatch = useAppDispatch();
 
   function handleEditSubmit() {
@@ -26,9 +26,31 @@ function TableElement(props: ITableElementsProps) {
   return (
     <tr
       key={id}
-      className="border border-gray-500 border-spacing-1 bg-purple-700 text-white"
+      className={`border border-gray-500 border-spacing-1 ${getFractionColor(
+        fraction
+      )} text-white`}
     >
-      <th className="w-24 h-20">{id}</th>
+      <th className="w-24 h-20">
+        <div>
+          {isEdit ? (
+            <input
+              type="number"
+              placeholder="Ilość"
+              name="quantity"
+              value={editValues.quantity}
+              onChange={(e) => {
+                setEditValues({
+                  ...editValues,
+                  quantity: parseInt(e.target.value),
+                });
+              }}
+              className="w-full bg-orange-700 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+            />
+          ) : (
+            quantity
+          )}
+        </div>
+      </th>
       <td className="w-24">
         <img
           src={getImgUrl({ name, tier, enchant })}

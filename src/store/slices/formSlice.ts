@@ -1,7 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "..";
+import { Fraction } from "../../interfaces";
 
-const initialState = { name: "", buy: 0, sell: 0, enchant: 0, tier: 1 };
+const initialState = {
+  name: "",
+  buy: 0,
+  sell: 0,
+  enchant: 0,
+  tier: 1,
+  fraction: Fraction.TF,
+};
 
 export const formSlice = createSlice({
   name: "form",
@@ -22,12 +30,16 @@ export const formSlice = createSlice({
     changeTier: (state, action: PayloadAction<number>) => {
       state.tier = action.payload;
     },
+    changeFraction: (state, action: PayloadAction<Fraction>) => {
+      state.fraction = action.payload;
+    },
     resetForm: (state) => {
       state.name = "";
       state.buy = 0;
       state.sell = 0;
       state.enchant = 0;
       state.tier = 1;
+      state.fraction = Fraction.TF;
     },
   },
 });
@@ -38,6 +50,7 @@ export const {
   changeSell,
   changeEnchant,
   changeTier,
+  changeFraction,
   resetForm,
 } = formSlice.actions;
 

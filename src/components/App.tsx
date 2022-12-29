@@ -10,7 +10,7 @@ import { useEffect } from "react";
 function App() {
   const form = useAppSelector((state) => state.form);
   const fetchedData = fetchItems();
-  const items = useAppSelector((state) => state.items.items);
+  const items = useAppSelector((state) => state.items);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -32,20 +32,29 @@ function App() {
     //   enchant: form.enchant,
     //   id: "uytg76ty",
     //   tier: form.tier,
+    //   fraction: form.fraction,
+    //   quantity: 0,
     // });
-    // if (savedItem != null)
+    // if (savedItem != null) {
     //   dispatch(
     //     addItem({
-    //       name: savedItem?.name,
+    //       name: savedItem.name,
     //       buy: savedItem.buy,
     //       sell: savedItem.sell,
     //       enchant: savedItem.enchant,
     //       id: savedItem.id,
     //       tier: savedItem.tier,
+    //       fraction: savedItem.fraction,
+    //       quantity: savedItem.quantity,
     //     })
     //   );
-    const data = fetchItems();
-    dispatch(setItems(data));
+    //   dispatch(resetForm());
+    // }
+    // const data = fetchItems();
+    // dispatch(setItems(data));
+    console.log(items.outcome);
+    console.log(items.income);
+    console.log(items.percentageProfit);
   }
 
   return (
@@ -54,7 +63,7 @@ function App() {
 
       <Form onSubmit={handleSubmitItem} />
 
-      <ItemsTable items={items} />
+      <ItemsTable items={items.items} />
       <div>
         <h2 className="text-slate-200">Kot</h2>
         <img
