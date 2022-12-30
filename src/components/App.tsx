@@ -29,31 +29,31 @@ function App() {
   }, []);
 
   function handleSubmitItem(item: Przedmiot) {
-    // const savedItem = writeItem({
-    //   name: form.name,
-    //   buy: form.buy,
-    //   sell: form.sell,
-    //   enchant: form.enchant,
-    //   id: "uytg76ty",
-    //   tier: form.tier,
-    //   fraction: form.fraction,
-    //   quantity: 0,
-    // });
-    // if (savedItem != null) {
-    //   dispatch(
-    //     addItem({
-    //       name: savedItem.name,
-    //       buy: savedItem.buy,
-    //       sell: savedItem.sell,
-    //       enchant: savedItem.enchant,
-    //       id: savedItem.id,
-    //       tier: savedItem.tier,
-    //       fraction: savedItem.fraction,
-    //       quantity: savedItem.quantity,
-    //     })
-    //   );
-    //   dispatch(resetForm());
-    // }
+    const savedItem = writeItem({
+      name: form.name,
+      buy: form.buy,
+      sell: form.sell,
+      enchant: form.enchant,
+      id: "uytg76ty",
+      tier: form.tier,
+      fraction: form.fraction,
+      quantity: 0,
+    });
+    if (savedItem != null) {
+      dispatch(
+        addItem({
+          name: savedItem.name,
+          buy: savedItem.buy,
+          sell: savedItem.sell,
+          enchant: savedItem.enchant,
+          id: savedItem.id,
+          tier: savedItem.tier,
+          fraction: savedItem.fraction,
+          quantity: savedItem.quantity,
+        })
+      );
+      dispatch(resetForm());
+    }
     // const data = fetchItems();
     // dispatch(setItems(data));
     console.log(itemsSlice.outcome);

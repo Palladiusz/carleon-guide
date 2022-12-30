@@ -1,8 +1,7 @@
-import { getAuth } from "firebase/auth";
 import { onValue, push, ref, remove, set } from "firebase/database";
 import { Przedmiot } from "./interfaces";
 import { convertTierToName } from "./logic";
-import { auth, database, app } from "./utils/firebase";
+import { auth, database } from "./utils/firebase";
 
 interface IGetImgUrlProps {
   name: string;
@@ -18,7 +17,7 @@ const getImgUrl = (props: IGetImgUrlProps) => {
 
   const fullUrl = `${basicUrl}${convertTierToName(
     numberTier
-  )} ${name}@${enchant}?&quality=5`;
+  )} ${name}@${enchant}?&quality=2`;
 
   return fullUrl;
 };

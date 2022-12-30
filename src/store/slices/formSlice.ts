@@ -7,7 +7,7 @@ const initialState = {
   buy: 0,
   sell: 0,
   enchant: 0,
-  tier: 1,
+  tier: 2,
   fraction: Fraction.TF,
 };
 
@@ -38,7 +38,7 @@ export const formSlice = createSlice({
       state.buy = 0;
       state.sell = 0;
       state.enchant = 0;
-      state.tier = 1;
+      state.tier = 2;
       state.fraction = Fraction.TF;
     },
   },

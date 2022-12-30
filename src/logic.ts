@@ -2,14 +2,11 @@ import { Fraction, Przedmiot } from "./interfaces";
 
 export function convertTierToName(tier: number) {
   switch (tier) {
-    case 1:
-      return "nowicjusza";
-
     case 2:
-      return "nowicjusza";
+      return "novice's";
 
     case 3:
-      return "nowicjusza";
+      return "journeyman's";
 
     case 4:
       return "adept's";
