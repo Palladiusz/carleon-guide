@@ -12,7 +12,6 @@ import { FaPlus, FaShoppingCart } from "react-icons/fa";
 
 function App() {
   const form = useAppSelector((state) => state.form);
-  const fetchedData = fetchItems();
   const itemsSlice = useAppSelector((state) => state.items);
   const dispatch = useAppDispatch();
   const [showForm, setShowForm] = useState(true);
@@ -20,12 +19,6 @@ function App() {
   useEffect(() => {
     const data = fetchItems();
     dispatch(setItems(data));
-
-    setTimeout(function () {
-      console.log(data);
-    }, 5000);
-
-    console.log(data);
   }, []);
 
   function handleSubmitItem(item: Przedmiot) {

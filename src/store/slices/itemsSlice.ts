@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "..";
 import { resetQuantityInDb as resetQuantityInApi } from "../../api";
 import { Przedmiot } from "../../interfaces";
-import { calculateTotalProfit, initialCalculations } from "../../logic";
+import { initialCalculations } from "../../logic";
 
 export const itemsSlice = createSlice({
   name: "items",
@@ -37,13 +37,13 @@ export const itemsSlice = createSlice({
     },
     removeItem: (state, action: PayloadAction<string>) => {
       const updated = state.items.filter((e) => {
-        return e.id != action.payload;
+        return e.id !== action.payload;
       });
       state.items = updated;
     },
     modifyItem: (state, action: PayloadAction<Przedmiot>) => {
       const updatedItems = state.items.map((e) => {
-        if (e.id == action.payload.id) {
+        if (e.id === action.payload.id) {
           const newItem = action.payload;
 
           console.log({ ...e, ...newItem });

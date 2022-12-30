@@ -25,19 +25,6 @@ export const Form = (props: IFormProps) => {
     fraction: Fraction.TF,
   });
 
-  function handleChange(
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>
-  ) {
-    const { name, value } = event.target;
-
-    setItem({
-      ...item,
-      [name]: value,
-    });
-  }
-
   return (
     <section className="m-5 ">
       <div className="flex items-center justify-center">

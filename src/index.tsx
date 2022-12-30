@@ -5,9 +5,8 @@ import store from "./store";
 
 import "./input.css";
 import App from "./components/App";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LoginPage } from "./pages/Login";
-import { initializeApp } from "firebase/app";
 import { TutorialPage } from "./pages/Tutorial";
 import { AboutPage } from "./pages/About";
 

@@ -4,25 +4,18 @@ export function convertTierToName(tier: number) {
   switch (tier) {
     case 2:
       return "novice's";
-
     case 3:
       return "journeyman's";
-
     case 4:
       return "adept's";
-
     case 5:
       return "expert's";
-
     case 6:
       return "master's";
-
     case 7:
       return "grandmaster's";
-
     case 8:
       return "elder's";
-
     default:
       return "adept's";
   }
