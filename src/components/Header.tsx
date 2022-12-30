@@ -20,8 +20,22 @@ export const Header = () => {
         </a>
         <Search />
         <nav className="flex flex-wrap items-center text-base justify-center">
-          <a className="mr-5 hover:text-gray-900">First Link</a>
-          <a className="mr-5 hover:text-gray-900">Second Link</a>
+          <a
+            className="mr-5 hover:text-gray-900 hover:cursor-pointer"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Main
+          </a>
+          <a
+            className="mr-5 hover:text-gray-900 hover:cursor-pointer"
+            onClick={() => {
+              navigate("/tutorial");
+            }}
+          >
+            Tutorial
+          </a>
           <a
             className="mr-5 hover:text-gray-900 bg-orange-700 p-1 rounded-md hover:bg-orange-200 hover:cursor-pointer"
             onClick={() => {

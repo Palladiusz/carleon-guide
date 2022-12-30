@@ -8,6 +8,7 @@ import App from "./components/App";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { LoginPage } from "./pages/Login";
 import { initializeApp } from "firebase/app";
+import { TutorialPage } from "./pages/Tutorial";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -19,6 +20,7 @@ root.render(
         <Routes>
           <Route path="/" element={<App />}></Route>
           <Route path="login" element={<LoginPage />}></Route>
+          <Route path="tutorial" element={<TutorialPage />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>
