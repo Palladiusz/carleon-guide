@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "..";
+import { resetQuantityInDb as resetQuantityInApi } from "../../api";
 import { Przedmiot } from "../../interfaces";
 import { calculateTotalProfit, initialCalculations } from "../../logic";
 
@@ -40,7 +41,6 @@ export const itemsSlice = createSlice({
       });
       state.items = updated;
     },
-    // Use the PayloadAction type to declare the contents of `action.payload`
     modifyItem: (state, action: PayloadAction<Przedmiot>) => {
       const updatedItems = state.items.map((e) => {
         if (e.id == action.payload.id) {
@@ -65,6 +65,38 @@ export const itemsSlice = createSlice({
       state.outcome = totalOutcome;
       state.percentageProfit = percentageTotalValue;
     },
+    resetQuantity: (state) => {
+      const itemIdsNeedToUpdate = state.items.map((item) => {
+        if (item.quantity !== 0) {
+          return item.id;
+        }
+      });
+      const updatedItems = state.items.map((item: Przedmiot) => {
+        if (itemIdsNeedToUpdate.includes(item.id)) {
+          return { ...item, quantity: 0 };
+        } else {
+          return item;
+        }
+      });
+
+      state.items = updatedItems;
+
+      const {
+        totalIncome,
+        totalOutcome,
+        percentageTotalValue,
+      } = initialCalculations(updatedItems);
+
+      state.income = totalIncome;
+      state.outcome = totalOutcome;
+      state.percentageProfit = percentageTotalValue;
+
+      const onlyResettedItems = updatedItems.filter((item) =>
+        itemIdsNeedToUpdate.includes(item.id)
+      );
+
+      resetQuantityInApi(onlyResettedItems);
+    },
   },
 });
 
@@ -74,6 +106,7 @@ export const {
   removeItem,
   modifyItem,
   setItems,
+  resetQuantity,
 } = itemsSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

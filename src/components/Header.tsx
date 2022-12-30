@@ -8,7 +8,6 @@ import { Search } from "./Search";
 
 export const Header = () => {
   const auth = getAuth();
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 

@@ -70,6 +70,21 @@ function editItem(item: Przedmiot) {
   }
 }
 
+function resetQuantityInDb(items: Przedmiot[]) {
+  const userId = auth.currentUser?.uid;
+
+  if (userId != null) {
+    items.map((item) => {
+      const postListRef = ref(database, userId + "/items" + `/${item.id}`);
+
+      set(postListRef, {
+        ...item,
+        quantity: 0,
+      });
+    });
+  }
+}
+
 function deleteItem(itemId: string) {
   const userId = auth.currentUser?.uid;
 
@@ -80,4 +95,4 @@ function deleteItem(itemId: string) {
   }
 }
 
-export { fetchItems, writeItem, editItem, deleteItem };
+export { fetchItems, writeItem, editItem, deleteItem, resetQuantityInDb };

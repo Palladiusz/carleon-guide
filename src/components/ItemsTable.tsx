@@ -1,5 +1,7 @@
-import { useAppSelector } from "../hooks";
+import { FaRedoAlt } from "react-icons/fa";
+import { useAppDispatch, useAppSelector } from "../hooks";
 import { Przedmiot } from "../interfaces";
+import { resetQuantity } from "../store";
 import { Styles } from "../tailwindStyles";
 import TableElement from "./TableElement";
 
@@ -12,8 +14,9 @@ export function ItemsTable(itemsProps: IItemsTableProps): JSX.Element {
   const filteredItems = itemsProps.items.filter((item) =>
     item.name.toLowerCase().includes(itemsSlice.searchTerm.toLowerCase())
   );
+  const dispatch = useAppDispatch();
 
-  const formattedItems = filteredItems.map((item, index) => {
+  const formattedItems = filteredItems.map((item) => {
     return <TableElement item={item} />;
   });
 
@@ -23,7 +26,16 @@ export function ItemsTable(itemsProps: IItemsTableProps): JSX.Element {
         <table className="table-fixed">
           <thead>
             <tr>
-              <th className={Styles.table.tableHeaderStart}>Ilość</th>
+              <th className={Styles.table.tableHeaderStart}>
+                Ilość
+                <button
+                  onClick={() => {
+                    dispatch(resetQuantity());
+                  }}
+                >
+                  <FaRedoAlt className="ml-2 mt-1" />
+                </button>
+              </th>
               <th className={Styles.table.tableHeader}>Obraz</th>
               <th className={Styles.table.tableHeader}>Nazwa przedmiotu</th>
               <th className={Styles.table.tableHeader}>Cena kupna</th>
