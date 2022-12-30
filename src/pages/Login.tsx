@@ -82,7 +82,7 @@ export const LoginPage = () => {
           <span>Hasło</span>
           <input
             type="password"
-            placeholder="Hasło"
+            placeholder="Password"
             name="password"
             onChange={handleInput}
             className="w-full bg-blue-700 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
@@ -93,7 +93,7 @@ export const LoginPage = () => {
             <span>Potwierdź hasło</span>
             <input
               type="password"
-              placeholder="Potwierdź hasło"
+              placeholder="Confirm password"
               name="confirmPassword"
               onChange={handleInput}
               className="w-full bg-blue-700 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
@@ -117,9 +117,7 @@ export const LoginPage = () => {
           onClick={() => setIsLogin(!isLogin)}
           className={`text-xs text-white p-0 hover:cursor-pointer absolute bottom-6 left-10`}
         >
-          {isLogin
-            ? " Nie masz konta? Zarejestruj się!"
-            : "Masz konto? Zaloguj się!"}
+          {isLogin ? "Dont have account? Register!" : "Have account? Login!"}
         </div>
       </div>
     </div>

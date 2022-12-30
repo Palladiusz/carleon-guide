@@ -14,7 +14,7 @@ function ItemNameInput() {
     <div>
       <input
         type="text"
-        placeholder="Nazwa przedmiotu"
+        placeholder="Item name"
         name="name"
         value={form.name}
         onChange={handleNameChange}

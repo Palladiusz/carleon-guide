@@ -27,7 +27,7 @@ export function ItemsTable(itemsProps: IItemsTableProps): JSX.Element {
           <thead>
             <tr>
               <th className={Styles.table.tableHeaderStart}>
-                Ilość
+                Quantity
                 <button
                   onClick={() => {
                     dispatch(resetQuantity());
@@ -36,29 +36,29 @@ export function ItemsTable(itemsProps: IItemsTableProps): JSX.Element {
                   <FaRedoAlt className="ml-2 mt-1" />
                 </button>
               </th>
-              <th className={Styles.table.tableHeader}>Obraz</th>
-              <th className={Styles.table.tableHeader}>Nazwa przedmiotu</th>
-              <th className={Styles.table.tableHeader}>Cena kupna</th>
-              <th className={Styles.table.tableHeader}>Cena sprzedaży</th>
-              <th className={Styles.table.tableHeader}>Zysk</th>
-              <th className={Styles.table.tableHeader}>Zysk w %</th>
+              <th className={Styles.table.tableHeader}>Image</th>
+              <th className={Styles.table.tableHeader}>Item name</th>
+              <th className={Styles.table.tableHeader}>Buy price</th>
+              <th className={Styles.table.tableHeader}>Sell price</th>
+              <th className={Styles.table.tableHeader}>Income</th>
+              <th className={Styles.table.tableHeader}>Income in %</th>
               <th className={Styles.table.tableHeader}>Tier</th>
-              <th className={Styles.table.tableHeaderEnd}>Zaklinanie</th>
-              <th className={Styles.table.tableHeaderEnd}>Opcje</th>
+              <th className={Styles.table.tableHeaderEnd}>Enchantment</th>
+              <th className={Styles.table.tableHeaderEnd}>Options</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-              <th className={Styles.table.tableHeaderStart}>Ilość</th>
-              <th className={Styles.table.tableHeader}>Obraz</th>
-              <th className={Styles.table.tableHeader}>Nazwa przedmiotu</th>
-              <th className={Styles.table.tableHeader}>Cena kupna</th>
-              <th className={Styles.table.tableHeader}>Cena sprzedaży</th>
-              <th className={Styles.table.tableHeader}>Zysk</th>
-              <th className={Styles.table.tableHeader}>Zysk w %</th>
+              <th className={Styles.table.tableHeaderStart}>Quantity</th>
+              <th className={Styles.table.tableHeader}>Image</th>
+              <th className={Styles.table.tableHeader}>Item name</th>
+              <th className={Styles.table.tableHeader}>Buy price</th>
+              <th className={Styles.table.tableHeader}>Sell price</th>
+              <th className={Styles.table.tableHeader}>Income</th>
+              <th className={Styles.table.tableHeader}>Income in %</th>
               <th className={Styles.table.tableHeader}>Tier</th>
-              <th className={Styles.table.tableHeaderEnd}>Zaklinanie</th>
-              <th className={Styles.table.tableHeaderEnd}>Opcje</th>
+              <th className={Styles.table.tableHeaderEnd}>Enchantment</th>
+              <th className={Styles.table.tableHeaderEnd}>Options</th>
             </tr>
           </tfoot>
           <tbody> {formattedItems} </tbody>

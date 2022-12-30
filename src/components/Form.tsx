@@ -44,15 +44,13 @@ export const Form = (props: IFormProps) => {
         <table className="table-fixed border border-black  rounded-lg shadow-xl">
           <thead>
             <tr>
-              <th className={Styles.table.tableHeaderStart}>
-                Nazwa przedmiotu
-              </th>
-              <th className={Styles.table.tableHeader}>Cena kupna</th>
-              <th className={Styles.table.tableHeader}>Cena sprzedaży</th>
+              <th className={Styles.table.tableHeaderStart}>Item name</th>
+              <th className={Styles.table.tableHeader}>Buy price</th>
+              <th className={Styles.table.tableHeader}>Sell price</th>
               <th className={Styles.table.tableHeader}>Tier</th>
-              <th className={Styles.table.tableHeader}>Zaklinanie</th>
-              <th className={Styles.table.tableHeader}>Frakcja</th>
-              <th className={Styles.table.tableHeaderEnd}>Dodaj</th>
+              <th className={Styles.table.tableHeader}>Enchantment</th>
+              <th className={Styles.table.tableHeader}>Fraction</th>
+              <th className={Styles.table.tableHeaderEnd}>Add new item</th>
             </tr>
           </thead>
           <tbody>

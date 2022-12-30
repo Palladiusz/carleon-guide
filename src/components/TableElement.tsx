@@ -39,7 +39,7 @@ function TableElement(props: ITableElementsProps) {
           {isEdit ? (
             <input
               type="number"
-              placeholder="Ilość"
+              placeholder="Quantity"
               name="quantity"
               value={editValues.quantity}
               onChange={(e) => {
@@ -66,7 +66,7 @@ function TableElement(props: ITableElementsProps) {
         {isEdit ? (
           <input
             type="text"
-            placeholder="Nazwa przedmiotu"
+            placeholder="Item name"
             name="name"
             value={editValues.name}
             onChange={(e) => {
@@ -82,7 +82,7 @@ function TableElement(props: ITableElementsProps) {
         {isEdit ? (
           <input
             type="number"
-            placeholder="Cena kupna"
+            placeholder="Buy price"
             name="buy"
             value={editValues.buy}
             onChange={(e) => {
@@ -98,7 +98,7 @@ function TableElement(props: ITableElementsProps) {
         {isEdit ? (
           <input
             type="number"
-            placeholder="Cena kupna"
+            placeholder="Sell price"
             name="sell"
             value={editValues.sell}
             onChange={(e) => {

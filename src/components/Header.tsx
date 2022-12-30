@@ -29,7 +29,7 @@ export const Header = () => {
               dispatch(setItems(data));
             }}
           >
-            Pobierz dane
+            Fetch data
           </a>
           <a
             className="mr-5 hover:text-gray-900 hover:cursor-pointer"
@@ -47,7 +47,7 @@ export const Header = () => {
               }
             }}
           >
-            {auth.currentUser != null ? "Wyloguj" : "Zaloguj"}
+            {auth.currentUser != null ? "Logout" : "Login"}
           </a>
         </nav>
       </div>

@@ -54,11 +54,6 @@ function App() {
       );
       dispatch(resetForm());
     }
-    // const data = fetchItems();
-    // dispatch(setItems(data));
-    console.log(itemsSlice.outcome);
-    console.log(itemsSlice.income);
-    console.log(itemsSlice.percentageProfit);
   }
 
   return (
@@ -85,7 +80,7 @@ function App() {
 
       <ItemsTable items={itemsSlice.items} />
       <div>
-        <h2 className="text-slate-200">Kot</h2>
+        <h2 className="text-slate-200">Cat</h2>
         <img
           src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
           alt="new"

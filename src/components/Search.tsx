@@ -9,7 +9,7 @@ export const Search = () => {
     <div>
       <input
         type="text"
-        placeholder="Szukajka..."
+        placeholder="Search..."
         name="search"
         value={itemsSlice.searchTerm}
         onChange={(e) => {

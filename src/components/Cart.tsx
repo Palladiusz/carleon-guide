@@ -14,11 +14,9 @@ export const Cart = () => {
         <table className="table-fixed border border-black  rounded-lg shadow-xl">
           <thead>
             <tr>
-              <th className={Styles.table.tableHeaderStart}>
-                Całkowita inwestycja
-              </th>
-              <th className={Styles.table.tableHeader}>Całkowity zysk</th>
-              <th className={Styles.table.tableHeaderEnd}>Procent zysku</th>
+              <th className={Styles.table.tableHeaderStart}>Total outcome</th>
+              <th className={Styles.table.tableHeader}>Total income</th>
+              <th className={Styles.table.tableHeaderEnd}>Percentage income</th>
             </tr>
           </thead>
           <tbody className="bg-orange-600">

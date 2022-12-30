@@ -13,7 +13,7 @@ function BuySellInput() {
     <div>
       <input
         type="number"
-        placeholder="Cena kupna"
+        placeholder="Buy price"
         name="buy"
         value={form.buy}
         onChange={handleValueChange}
