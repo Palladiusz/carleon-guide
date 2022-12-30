@@ -37,6 +37,14 @@ export const Header = () => {
             Tutorial
           </a>
           <a
+            className="mr-5 hover:text-gray-900 hover:cursor-pointer"
+            onClick={() => {
+              navigate("/about");
+            }}
+          >
+            About
+          </a>
+          <a
             className="mr-5 hover:text-gray-900 bg-orange-700 p-1 rounded-md hover:bg-orange-200 hover:cursor-pointer"
             onClick={() => {
               const data = fetchItems();

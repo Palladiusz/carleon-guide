@@ -79,14 +79,6 @@ function App() {
       </div>
 
       <ItemsTable items={itemsSlice.items} />
-      <div>
-        <h2 className="text-slate-200">Cat</h2>
-        <img
-          src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
-          alt="new"
-          className="w-100"
-        />
-      </div>
     </div>
   );
 }
