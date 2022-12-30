@@ -55,16 +55,16 @@ export function initialCalculations(items: Przedmiot[]) {
 export function getFractionColor(fraction: Fraction) {
   switch (fraction) {
     case Fraction.BW:
-      return "bg-orange-600";
+      return "bg-gradient-to-b from-orange-600 to-orange-700";
     case Fraction.FS:
-      return "bg-gray-200";
+      return "bg-gradient-to-b from-gray-200 to-gray-300";
     case Fraction.LYM:
-      return "bg-green-600";
+      return "bg-gradient-to-b from-green-600 to-green-700";
     case Fraction.ML:
-      return "bg-blue-600";
+      return "bg-gradient-to-b from-blue-600 to-blue-700";
     default:
     case Fraction.TF:
-      return "bg-purple-600";
+      return "bg-gradient-to-b from-purple-600 to-purple-700";
   }
 }
 

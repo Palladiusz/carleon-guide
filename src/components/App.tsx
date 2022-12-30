@@ -57,7 +57,7 @@ function App() {
   }
 
   return (
-    <div className="bg-gray-700 bg-cover">
+    <div className="bg-gradient-to-b from-gray-700 to-gray-800  min-h-screen">
       <Header />
 
       <div className="relative">

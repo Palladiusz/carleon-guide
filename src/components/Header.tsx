@@ -12,7 +12,7 @@ export const Header = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <header className="text-gray-200 body-font bg-orange-500 shadow-lg">
+    <header className="text-gray-200 body-font bg-gradient-to-b from-orange-500 to-orange-600 shadow-lg">
       <div className="container mx-auto flex flex-wrap p-5 flex-row items-center justify-between">
         <a className="flex title-font font-medium flex-col items-center text-gray-900 mb-4 md:mb-0">
           <span className="ml-3 text-xl text-gray-200">Carleon guide</span>

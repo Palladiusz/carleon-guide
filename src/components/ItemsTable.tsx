@@ -33,7 +33,7 @@ export function ItemsTable(itemsProps: IItemsTableProps): JSX.Element {
                     dispatch(resetQuantity());
                   }}
                 >
-                  <FaRedoAlt className="ml-2 mt-1" />
+                  <FaRedoAlt className=" mt-1" />
                 </button>
               </th>
               <th className={Styles.table.tableHeader}>Image</th>
