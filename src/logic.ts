@@ -50,7 +50,7 @@ export function getFractionColor(fraction: Fraction) {
     case Fraction.BW:
       return "bg-gradient-to-b from-orange-600 to-orange-700";
     case Fraction.FS:
-      return "bg-gradient-to-b from-gray-200 to-gray-300";
+      return "bg-gradient-to-b from-gray-400 to-gray-500";
     case Fraction.LYM:
       return "bg-gradient-to-b from-green-600 to-green-700";
     case Fraction.ML:
