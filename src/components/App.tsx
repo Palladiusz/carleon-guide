@@ -4,15 +4,13 @@ import { addItem, resetForm, setItems } from "../store";
 import { Form } from "./Form";
 import { Header } from "./Header";
 import { ItemsTable } from "./ItemsTable";
-import { fetchItems, writeItem } from "../api";
+import { writeItem } from "../api";
 import { useEffect, useState } from "react";
 import { Cart } from "./Cart";
 import SmallButton from "./SmallButton";
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
 import { auth, database } from "../utils/firebase";
-import { child, get, onValue, ref } from "firebase/database";
-import { FirebaseError } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { child, get, ref } from "firebase/database";
 
 function App() {
   const form = useAppSelector((state) => state.form);
