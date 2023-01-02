@@ -1,19 +1,17 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { changeEnchant } from "../../store";
 
 function EnchantInput() {
   const dispatch = useAppDispatch();
-
-  const [starCount, setStarCount] = useState(0);
+  const form = useAppSelector((state) => state.form);
+  const starCount = form.enchant;
 
   function handleStarClick(starValue: number) {
     if (starCount === 1 && starValue === 1) {
-      setStarCount(0);
       dispatch(changeEnchant(0));
     } else {
-      setStarCount(starValue);
       dispatch(changeEnchant(starValue));
     }
   }

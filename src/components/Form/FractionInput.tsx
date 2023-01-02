@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { Fraction } from "../../interfaces";
 import { changeFraction } from "../../store";
 
 function FractionInput() {
   const dispatch = useAppDispatch();
-  const [fraction, setFraction] = useState(Fraction.TF);
+  const form = useAppSelector((state) => state.form);
+  const fraction = form.fraction;
 
   function handleFractionChange(newFraction: Fraction) {
-    setFraction(newFraction);
     dispatch(changeFraction(newFraction));
   }
   return (
