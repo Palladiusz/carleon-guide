@@ -17,7 +17,7 @@ export function ItemsTable(itemsProps: IItemsTableProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const formattedItems = filteredItems.map((item) => {
-    return <TableElement item={item} />;
+    return <TableElement key={item.id} item={item} />;
   });
 
   return (
