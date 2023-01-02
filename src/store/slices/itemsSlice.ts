@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "..";
-import { resetQuantityInDb as resetQuantityInApi } from "../../api";
+import { resetQuantityInApi } from "../../api";
 import { Przedmiot } from "../../interfaces";
 import { initialCalculations } from "../../logic";
 

@@ -70,7 +70,7 @@ function editItem(item: Przedmiot) {
   }
 }
 
-function resetQuantityInDb(items: Przedmiot[]) {
+function resetQuantityInApi(items: Przedmiot[]) {
   const userId = auth.currentUser?.uid;
 
   if (userId != null) {
@@ -95,4 +95,4 @@ function deleteItem(itemId: string) {
   }
 }
 
-export { fetchItems, writeItem, editItem, deleteItem, resetQuantityInDb };
+export { fetchItems, writeItem, editItem, deleteItem, resetQuantityInApi };

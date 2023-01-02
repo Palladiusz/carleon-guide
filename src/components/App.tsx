@@ -9,6 +9,10 @@ import { useEffect, useState } from "react";
 import { Cart } from "./Cart";
 import SmallButton from "./SmallButton";
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
+import { auth, database } from "../utils/firebase";
+import { child, get, onValue, ref } from "firebase/database";
+import { FirebaseError } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 function App() {
   const form = useAppSelector((state) => state.form);
@@ -17,8 +21,28 @@ function App() {
   const [showForm, setShowForm] = useState(true);
 
   useEffect(() => {
-    const data = fetchItems();
-    dispatch(setItems(data));
+    // Fetch data from firebase on load page
+    const dbRef = ref(database);
+    auth.onAuthStateChanged(function (user) {
+      if (user) {
+        get(child(dbRef, `${user.uid}`))
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              const data = snapshot.val().items;
+              const values = Object.keys(data).map((key) => data[key]);
+              const items = values.map((element: Przedmiot) => element);
+              dispatch(setItems(items));
+            } else {
+              console.log("No data available");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } else {
+        console.log("error");
+      }
+    });
   }, []);
 
   function handleSubmitItem(item: Przedmiot) {
