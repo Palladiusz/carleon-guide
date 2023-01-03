@@ -14,12 +14,10 @@ export const itemsSlice = createSlice({
     percentageProfit: "",
   },
   reducers: {
-    changeSearchTerm: (state, action: PayloadAction<string>) => {
-      state.searchTerm = action.payload;
+    changeSearchTerm: (state, action: { payload: { searchTerm: string } }) => {
+      return { ...state, searchTerm: action.payload.searchTerm };
     },
-    setItems: (state, action: PayloadAction<Przedmiot[]>) => {
-      state.items = action.payload;
-
+    setItems: (state, action: { payload: { items: Przedmiot[] } }) => {
       if (state.items.length > 0) {
         const {
           totalIncome,
@@ -27,33 +25,36 @@ export const itemsSlice = createSlice({
           percentageTotalValue,
         } = initialCalculations(state.items);
 
-        state.income = totalIncome;
-        state.outcome = totalOutcome;
-        state.percentageProfit = percentageTotalValue;
+        return {
+          ...state,
+          income: totalIncome,
+          outcome: totalOutcome,
+          percentageProfit: percentageTotalValue,
+          items: action.payload.items,
+        };
       }
+      return { ...state, items: action.payload.items };
     },
-    addItem: (state, action: PayloadAction<Przedmiot>) => {
-      state.items.push(action.payload);
+    addItem: (state, action: { payload: { newItem: Przedmiot } }) => {
+      state.items.push(action.payload.newItem);
     },
-    removeItem: (state, action: PayloadAction<string>) => {
+    removeItem: (state, action: { payload: { id: string } }) => {
       const updated = state.items.filter((e) => {
-        return e.id !== action.payload;
+        return e.id !== action.payload.id;
       });
-      state.items = updated;
-    },
-    modifyItem: (state, action: PayloadAction<Przedmiot>) => {
-      const updatedItems = state.items.map((e) => {
-        if (e.id === action.payload.id) {
-          const newItem = action.payload;
 
-          console.log({ ...e, ...newItem });
+      return { ...state, items: updated };
+    },
+    modifyItem: (state, action: { payload: { item: Przedmiot } }) => {
+      const updatedItems = state.items.map((e) => {
+        if (e.id === action.payload.item.id) {
+          const newItem = action.payload.item;
 
           return { ...e, ...newItem };
         } else {
           return e;
         }
       });
-      state.items = updatedItems;
 
       const {
         totalIncome,
@@ -61,9 +62,13 @@ export const itemsSlice = createSlice({
         percentageTotalValue,
       } = initialCalculations(updatedItems);
 
-      state.income = totalIncome;
-      state.outcome = totalOutcome;
-      state.percentageProfit = percentageTotalValue;
+      return {
+        ...state,
+        income: totalIncome,
+        outcome: totalOutcome,
+        percentageProfit: percentageTotalValue,
+        items: updatedItems,
+      };
     },
     resetQuantity: (state) => {
       const itemIdsNeedToUpdate = state.items.map((item) => {
@@ -71,6 +76,7 @@ export const itemsSlice = createSlice({
           return item.id;
         }
       });
+
       const updatedItems = state.items.map((item: Przedmiot) => {
         if (itemIdsNeedToUpdate.includes(item.id)) {
           return { ...item, quantity: 0 };
@@ -79,23 +85,25 @@ export const itemsSlice = createSlice({
         }
       });
 
-      state.items = updatedItems;
-
       const {
         totalIncome,
         totalOutcome,
         percentageTotalValue,
       } = initialCalculations(updatedItems);
 
-      state.income = totalIncome;
-      state.outcome = totalOutcome;
-      state.percentageProfit = percentageTotalValue;
-
       const onlyResettedItems = updatedItems.filter((item) =>
         itemIdsNeedToUpdate.includes(item.id)
       );
 
       resetQuantityInApi(onlyResettedItems);
+
+      return {
+        ...state,
+        income: totalIncome,
+        outcome: totalOutcome,
+        percentageProfit: percentageTotalValue,
+        items: updatedItems,
+      };
     },
   },
 });

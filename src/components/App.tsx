@@ -29,7 +29,7 @@ function App() {
               const data = snapshot.val().items;
               const values = Object.keys(data).map((key) => data[key]);
               const items = values.map((element: Przedmiot) => element);
-              dispatch(setItems(items));
+              dispatch(setItems({ items: items }));
             } else {
               console.log("No data available");
             }
@@ -57,14 +57,16 @@ function App() {
     if (savedItem != null) {
       dispatch(
         addItem({
-          name: savedItem.name,
-          buy: savedItem.buy,
-          sell: savedItem.sell,
-          enchant: savedItem.enchant,
-          id: savedItem.id,
-          tier: savedItem.tier,
-          fraction: savedItem.fraction,
-          quantity: savedItem.quantity,
+          newItem: {
+            name: savedItem.name,
+            buy: savedItem.buy,
+            sell: savedItem.sell,
+            enchant: savedItem.enchant,
+            id: savedItem.id,
+            tier: savedItem.tier,
+            fraction: savedItem.fraction,
+            quantity: savedItem.quantity,
+          },
         })
       );
       dispatch(resetForm());

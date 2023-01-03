@@ -15,31 +15,33 @@ export const formSlice = createSlice({
   name: "form",
   initialState: initialState,
   reducers: {
-    changeName: (state, action: PayloadAction<string>) => {
-      state.name = action.payload;
+    changeName: (state, action: { payload: { name: string } }) => {
+      return { ...state, name: action.payload.name };
     },
-    changeBuy: (state, action: PayloadAction<number>) => {
-      state.buy = action.payload;
+    changeBuy: (state, action: { payload: { buy: number } }) => {
+      return { ...state, buy: action.payload.buy };
     },
-    changeSell: (state, action: PayloadAction<number>) => {
-      state.sell = action.payload;
+    changeSell: (state, action: { payload: { sell: number } }) => {
+      return { ...state, sell: action.payload.sell };
     },
-    changeEnchant: (state, action: PayloadAction<number>) => {
-      state.enchant = action.payload;
+    changeEnchant: (state, action: { payload: { enchant: number } }) => {
+      return { ...state, enchant: action.payload.enchant };
     },
-    changeTier: (state, action: PayloadAction<number>) => {
-      state.tier = action.payload;
+    changeTier: (state, action: { payload: { tier: number } }) => {
+      return { ...state, tier: action.payload.tier };
     },
-    changeFraction: (state, action: PayloadAction<Fraction>) => {
-      state.fraction = action.payload;
+    changeFraction: (state, action: { payload: { fraction: Fraction } }) => {
+      return { ...state, fraction: action.payload.fraction };
     },
-    resetForm: (state) => {
-      state.name = "";
-      state.buy = 0;
-      state.sell = 0;
-      state.enchant = 0;
-      state.tier = 2;
-      state.fraction = Fraction.TF;
+    resetForm: () => {
+      return {
+        name: "",
+        buy: 0,
+        sell: 0,
+        enchant: 0,
+        tier: 2,
+        fraction: Fraction.TF,
+      };
     },
   },
 });
@@ -54,7 +56,6 @@ export const {
   resetForm,
 } = formSlice.actions;
 
-// Other code such as selectors can use the imported `RootState` type
 export const selectForm = (state: RootState) => state.form;
 
 export default formSlice;

@@ -10,9 +10,9 @@ function EnchantInput() {
 
   function handleStarClick(starValue: number) {
     if (starCount === 1 && starValue === 1) {
-      dispatch(changeEnchant(0));
+      dispatch(changeEnchant({ enchant: 0 }));
     } else {
-      dispatch(changeEnchant(starValue));
+      dispatch(changeEnchant({ enchant: starValue }));
     }
   }
 

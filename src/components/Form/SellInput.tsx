@@ -7,7 +7,7 @@ function BuySellInput() {
   const form = useAppSelector((state) => state.form);
 
   function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
-    dispatch(changeSell(parseInt(event.target.value)));
+    dispatch(changeSell({ sell: parseInt(event.target.value) }));
     console.log(event.target.value);
   }
   return (

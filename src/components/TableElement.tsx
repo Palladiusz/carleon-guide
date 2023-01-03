@@ -23,7 +23,7 @@ function TableElement(props: ITableElementsProps) {
 
   function handleEditSubmit() {
     const modifiedItem = { ...props.item, ...editValues };
-    dispatch(modifyItem(modifiedItem));
+    dispatch(modifyItem({ item: modifiedItem }));
     editItem(modifiedItem);
   }
 
@@ -138,7 +138,7 @@ function TableElement(props: ITableElementsProps) {
           children={<FaTrashAlt />}
           handleClick={() => {
             deleteItem(id);
-            dispatch(removeItem(id));
+            dispatch(removeItem({ id: id }));
           }}
         />
       </td>

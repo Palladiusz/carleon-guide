@@ -7,7 +7,7 @@ function TierInput() {
   const form = useAppSelector((state) => state.form);
 
   function handleTierChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    dispatch(changeTier(parseInt(event.target.value)));
+    dispatch(changeTier({ tier: parseInt(event.target.value) }));
   }
 
   return (

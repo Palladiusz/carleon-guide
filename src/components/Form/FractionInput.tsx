@@ -9,7 +9,7 @@ function FractionInput() {
   const fraction = form.fraction;
 
   function handleFractionChange(newFraction: Fraction) {
-    dispatch(changeFraction(newFraction));
+    dispatch(changeFraction({ fraction: newFraction }));
   }
   return (
     <div className="p-1">

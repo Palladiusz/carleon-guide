@@ -7,7 +7,7 @@ function ItemNameInput() {
   const form = useAppSelector((state) => state.form);
 
   function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
-    dispatch(changeName(event.target.value));
+    dispatch(changeName({ name: event.target.value }));
   }
 
   return (
